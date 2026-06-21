@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#080812" />
+  <title>La Variante · EPK WebApp</title>
+  <meta name="description" content="EPK interactivo, fan hub y rider técnico de La Variante." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar" id="top">
+    <a class="brand" href="#top" aria-label="Ir al inicio">
+      <img src="assets/logo.svg" alt="Logo La Variante" />
+      <span>
+        <strong data-bind="band.name">La Variante</strong>
+        <small>EPK / Fan Hub</small>
+      </span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#banda">Banda</a>
+      <a href="#canciones">Canciones</a>
+      <a href="#formatos">Shows</a>
+      <a href="#rider">Rider</a>
+      <a href="#booking">Booking</a>
+      <button class="ghost small" data-action="print-epk">Imprimir EPK</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Banda independiente · <span data-bind="band.city">Bogotá, Colombia</span></p>
+        <h1><span data-bind="band.name">La Variante</span><br><em data-bind="band.tagline">Una banda en movimiento.</em></h1>
+        <p class="lead" data-bind="band.shortPitch">La Variante mezcla energía en vivo, canciones con narrativa propia y una puesta en escena cercana, potente y adaptable.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#booking">Contratar / Programar</a>
+          <a class="button secondary" href="#canciones">Escuchar canciones</a>
+          <button class="button quiet" data-action="copy-booking">Copiar pitch</button>
+        </div>
+      </div>
+      <aside class="hero-card glass">
+        <div class="pulse-logo" data-bind="band.logoText">LV</div>
+        <div class="stat-grid" id="heroStats"></div>
+      </aside>
+    </section>
+
+    <section class="section marquee-wrap" aria-label="Identidad sonora">
+      <div class="marquee">
+        <span>Rock alternativo</span><span>Pop rock</span><span>Fusión</span><span>Show en vivo</span><span>EPK</span><span>Rider técnico</span>
+        <span>Rock alternativo</span><span>Pop rock</span><span>Fusión</span><span>Show en vivo</span><span>EPK</span><span>Rider técnico</span>
+      </div>
+    </section>
+
+    <section class="section split" id="banda">
+      <div>
+        <p class="eyebrow">Quiénes son</p>
+        <h2>Una propuesta pensada para fans, programadores y escenarios reales.</h2>
+      </div>
+      <div class="rich-text">
+        <p><strong data-bind="band.name">La Variante</strong> nace como una banda de canciones con identidad propia, energía escénica y una narrativa visual lista para moverse entre conciertos, festivales, bares, eventos culturales y sesiones íntimas.</p>
+        <p>La web funciona como carta de presentación pública y como carpeta técnica para contratación. Porque mandar siete PDFs por WhatsApp y rezarle al caos no debería ser el plan de booking, aunque los humanos insistan. 🫠</p>
+        <dl class="facts">
+          <div><dt>Género</dt><dd data-bind="band.genre">Rock alternativo · Pop rock</dd></div>
+          <div><dt>Clima</dt><dd data-bind="band.mood">Intenso y cinematográfico</dd></div>
+          <div><dt>Base</dt><dd data-bind="band.city">Bogotá</dd></div>
+          <div><dt>Desde</dt><dd data-bind="band.founded">2026</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section cards-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Enfoque</p>
+          <h2>Temáticas y universo de la banda</h2>
+        </div>
+        <p>Una lectura rápida para fans y una explicación clara para programadores.</p>
+      </div>
+      <div class="cards three" id="identityCards"></div>
+    </section>
+
+    <section class="section cards-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Integrantes</p>
+          <h2>La formación base</h2>
+        </div>
+        <p>Formación adaptable para full band, acústico o showcase.</p>
+      </div>
+      <div class="cards four" id="membersGrid"></div>
+    </section>
+
+    <section class="section songs" id="canciones">
+      <div class="section-head align-end">
+        <div>
+          <p class="eyebrow">Repertorio</p>
+          <h2>Canciones, energía y momentos del show</h2>
+        </div>
+        <div class="filters" role="search">
+          <input id="songSearch" type="search" placeholder="Buscar canción, temática o mood..." aria-label="Buscar canciones" />
+          <select id="energyFilter" aria-label="Filtrar por energía">
+            <option value="">Todas las energías</option>
+          </select>
+        </div>
+      </div>
+      <div class="song-grid" id="songGrid"></div>
+    </section>
+
+    <section class="section formats" id="formatos">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Contratación</p>
+          <h2>Formatos de show</h2>
+        </div>
+        <p>Para no vender el mismo show en todos lados como si los espacios no existieran. Qué acto tan revolucionario: adaptar.</p>
+      </div>
+      <div class="timeline" id="showFormats"></div>
+    </section>
+
+    <section class="section rider" id="rider">
+      <div class="section-head align-end">
+        <div>
+          <p class="eyebrow">Producción</p>
+          <h2>Rider técnico interactivo</h2>
+        </div>
+        <div class="rider-actions">
+          <button class="button secondary small" data-action="print-rider">Imprimir rider</button>
+          <button class="button quiet small" data-action="copy-rider">Copiar resumen</button>
+        </div>
+      </div>
+
+      <div class="rider-layout">
+        <article class="glass rider-summary">
+          <h3>Resumen técnico</h3>
+          <p id="riderSummary"></p>
+          <dl class="facts compact">
+            <div><dt>Escenario</dt><dd id="stageSize"></dd></div>
+            <div><dt>Energía</dt><dd id="powerReq"></dd></div>
+            <div><dt>Soundcheck</dt><dd id="arrivalReq"></dd></div>
+          </dl>
+          <h4>Monitoreo</h4>
+          <ul class="check-list" id="monitorsList"></ul>
+          <h4>Backline</h4>
+          <ul class="check-list" id="backlineList"></ul>
+        </article>
+
+        <article class="stage-card glass">
+          <h3>Stage plot base</h3>
+          <div class="stage" aria-label="Plano de escenario">
+            <div class="stage-zone back">Fondo</div>
+            <div class="amp amp-l">GTR</div>
+            <div class="drums">🥁<span>Batería</span></div>
+            <div class="amp amp-r">Bajo</div>
+            <div class="mic mic-l">Coro</div>
+            <div class="mic mic-c">Voz lead</div>
+            <div class="mic mic-r">Coro</div>
+            <div class="stage-zone front">Público</div>
+          </div>
+          <p class="hint">Este mapa es base. Se puede ajustar según venue, número de integrantes y backline disponible.</p>
+        </article>
+      </div>
+
+      <article class="table-card glass">
+        <div class="table-head">
+          <h3>Input list</h3>
+          <input id="inputSearch" type="search" placeholder="Buscar canal, fuente o mic..." aria-label="Buscar input" />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Ch</th><th>Fuente</th><th>Mic / DI</th><th>Soporte</th><th>Notas</th></tr>
+            </thead>
+            <tbody id="inputTable"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="section media-kit">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">EPK</p>
+          <h2>Material para prensa y programación</h2>
+        </div>
+        <p>Una sola zona para que el organizador encuentre lo importante sin iniciar una excavación arqueológica en chats.</p>
+      </div>
+      <div class="cards four epk-actions">
+        <button class="action-card" data-action="copy-bio"><span>📝</span><strong>Copiar bio corta</strong><small>Para convocatorias y prensa</small></button>
+        <button class="action-card" data-action="copy-tech"><span>🔌</span><strong>Copiar rider base</strong><small>Resumen técnico rápido</small></button>
+        <button class="action-card" data-action="print-epk"><span>🖨️</span><strong>Imprimir EPK</strong><small>Guardar como PDF</small></button>
+      </div>
+    </section>
+
+    <section class="section booking" id="booking">
+      <div class="booking-card glass">
+        <div>
+          <p class="eyebrow">Booking</p>
+          <h2 data-bind="booking.headline">Contrata a La Variante</h2>
+          <p data-bind="booking.text">Disponible para conciertos, festivales, bares y eventos culturales.</p>
+          <p class="muted" data-bind="booking.requirements">Para cotizar, indicar fecha, ciudad y requerimientos técnicos.</p>
+        </div>
+        <div class="contact-card">
+          <a class="contact-link" id="mailLink" href="#">✉️ <span data-bind="band.contactEmail">booking@lavariante.com</span></a>
+          <a class="contact-link" id="phoneLink" href="#">📲 <span data-bind="band.contactPhone">+57 300 000 0000</span></a>
+          <div class="socials">
+            <span data-bind="band.instagram">@lavariante</span>
+            <span data-bind="band.youtube">YouTube</span>
+            <span data-bind="band.spotify">Spotify</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Preguntas rápidas</p>
+          <h2>Antes de escribirle a la banda</h2>
+        </div>
+      </div>
+      <div class="accordion" id="faqList"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong data-bind="band.name">La Variante</strong>
+      <p>EPK webapp · Fans · Booking · Rider técnico</p>
+    </div>
+    <a href="#top">Volver arriba ↑</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "La Variante EPK WebApp",
+  "short_name": "La Variante",
+  "description": "Webapp tipo EPK, fan hub y rider técnico para una banda.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#080812",
+  "theme_color": "#b7ff3c",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "64x64", "type": "image/svg+xml" }
+  ]
+}
