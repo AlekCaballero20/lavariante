@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="La Variante logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b7ff3c"/>
+      <stop offset="0.5" stop-color="#7a5cff"/>
+      <stop offset="1" stop-color="#ff3d8b"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.7  0 1 0 0 0.2  0 0 1 0 1  0 0 0 0.8 0"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="#080812"/>
+  <path d="M93 368 185 92h62l-71 217h118l-20 59H93Z" fill="url(#g)" filter="url(#glow)"/>
+  <path d="M253 92h68l43 184 62-184h64l-100 276h-66L253 92Z" fill="url(#g)" opacity=".92"/>
+  <path d="M74 405h366" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".9"/>
+</svg>
